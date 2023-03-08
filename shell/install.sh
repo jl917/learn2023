@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 VERSION=$1
 FILEPATH="./_temp.zip"
 
