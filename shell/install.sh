@@ -8,7 +8,7 @@ download(){
   curl --progress-bar --fail -L "$URL" -o "${FILEPATH}"
   unzip -oq "${FILEPATH}"
   rm -rf "${FILEPATH}"
-  mv -f ./eslintWatch-${VERSION}/{.,}* .[^.]* ./
+  mv -f ./eslintWatch-${VERSION}/.[!.]* ./
   rm -rf ./eslintWatch-${VERSION}
 }
 
