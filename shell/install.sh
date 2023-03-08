@@ -1,3 +1,14 @@
 #!/bin/bash
-echo "0 => $0"
-echo "1 => $1"
+VERSION=$1
+FILEPATH="./_temp.zip"
+
+download(){
+  URL="https://github.com/jl917/eslintWatch/archive/refs/tags/v${VERSION}.zip"
+  curl --progress-bar --fail -L "$URL" -o "${FILEPATH}"
+  unzip -oq "${FILEPATH}"
+  rm -rf "${FILEPATH}"
+  mv -f ./eslintWatch-${VERSION}/{.,}* ./
+  rm -rf ./eslintWatch-${VERSION}
+}
+
+download
