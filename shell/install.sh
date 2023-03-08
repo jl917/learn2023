@@ -12,3 +12,5 @@ download(){
 }
 
 download
+
+# sh ./install.sh 1.0.2
