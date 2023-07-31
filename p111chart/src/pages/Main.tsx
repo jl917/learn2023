@@ -1,6 +1,8 @@
+import useChartResize from '@/hooks/useChartResize';
 import { ECOption } from '@/types/echart';
 import * as echarts from 'echarts';
 import { useEffect, useRef } from 'react';
+import { debounce } from 'lodash-es'
 
 function randomNum(m: number, n: number): number {
   return Math.floor(Math.random() * (m - n) + n)
@@ -102,7 +104,9 @@ const option: ECOption = {
     }
   ]
 };
-let a: any;
+
+
+
 const MainPage = () => {
   const chartRef = useRef<echarts.EChartsType | null>(null);
   const divRef = useRef<HTMLDivElement>(null);
@@ -111,7 +115,16 @@ const MainPage = () => {
     if (divRef.current) {
       chartRef.current = echarts.init(divRef.current)
       chartRef.current.setOption(option);
+      const fn = () => {
+        chartRef.current?.resize()
+      }
+      const resizeContainerFn = debounce(fn, 100)
+      const resizeObserver = new ResizeObserver(() => {
+        resizeContainerFn()
+      });
+      resizeObserver.observe(divRef.current);
     }
+
   }, []);
 
   const onClick = () => {
@@ -122,7 +135,7 @@ const MainPage = () => {
 
   return (
     <>
-      <div style={{ width: 500, height: 500 }} ref={divRef}></div>
+      <div className="chart" style={{ height: 500 }} ref={divRef} ></div>
       <button onClick={onClick}>change</button>
     </>
   );
