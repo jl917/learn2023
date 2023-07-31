@@ -127,7 +127,8 @@ const MainPage = () => {
       resizeObserver.observe(divRef.current);
     }
     return () => {
-      divRef.current && resizeObserver.unobserve(divRef.current)
+      chartRef.current?.dispose(); // 차트객체 제거
+      divRef.current && resizeObserver.unobserve(divRef.current); // 리스너객체 제거
     }
 
   }, []);
