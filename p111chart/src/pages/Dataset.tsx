@@ -20,6 +20,18 @@ const option: ECOption = {
       }
     }
   },
+  dataset: {
+    source: [
+      ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine'],
+      ['Mon', 120, 220, 150, 320, 820],
+      ['Tue', 132, 182, 232, 332, 932],
+      ['Wed', 101, 191, 201, 301, 901],
+      ['Thu', 134, 234, 156, 334, 934],
+      ['Fri', 90, 290, 190, 390, 1290],
+      ['Sat', 230, 330, 330, 330, 1330],
+      ['Sun', 210, 310, 410, 320, 1320],
+    ]
+  },
   legend: {
     data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
   },
@@ -55,7 +67,6 @@ const option: ECOption = {
       emphasis: {
         focus: 'series'
       },
-      data: [120, 132, 101, 134, 90, 230, 210]
     },
     {
       name: 'Union Ads',
@@ -65,7 +76,6 @@ const option: ECOption = {
       emphasis: {
         focus: 'series'
       },
-      data: [220, 182, 191, 234, 290, 330, 310]
     },
     {
       name: 'Video Ads',
@@ -75,7 +85,6 @@ const option: ECOption = {
       emphasis: {
         focus: 'series'
       },
-      data: [150, 232, 201, 154, 190, 330, 410]
     },
     {
       name: 'Direct',
@@ -85,7 +94,6 @@ const option: ECOption = {
       emphasis: {
         focus: 'series'
       },
-      data: [320, 332, 301, 334, 390, 330, 320]
     },
     {
       name: 'Search Engine',
@@ -99,14 +107,13 @@ const option: ECOption = {
       emphasis: {
         focus: 'series'
       },
-      data: [820, 932, 901, 934, 1290, 1330, 1320]
     }
   ]
 };
 
 
 
-const MainPage = () => {
+const DatasetPage = () => {
   const chartRef = useRef<echarts.EChartsType | null>(null);
   const divRef = useRef<HTMLDivElement>(null);
 
@@ -146,4 +153,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default DatasetPage;
