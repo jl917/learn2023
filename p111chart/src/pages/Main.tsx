@@ -112,17 +112,22 @@ const MainPage = () => {
   const divRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let resizeObserver: ResizeObserver;
+
     if (divRef.current) {
       chartRef.current = echarts.init(divRef.current)
       chartRef.current.setOption(option);
-      const fn = () => {
-        chartRef.current?.resize()
-      }
-      const resizeContainerFn = debounce(fn, 100)
-      const resizeObserver = new ResizeObserver(() => {
+
+      const resizeFn = () => chartRef.current?.resize();
+      const resizeContainerFn = debounce(resizeFn, 100)
+
+      resizeObserver = new ResizeObserver(() => {
         resizeContainerFn()
       });
       resizeObserver.observe(divRef.current);
+    }
+    return () => {
+      divRef.current && resizeObserver.unobserve(divRef.current)
     }
 
   }, []);
