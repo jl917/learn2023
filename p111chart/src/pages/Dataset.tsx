@@ -22,7 +22,7 @@ const option: ECOption = {
   },
   dataset: {
     source: [
-      ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine'],
+      ['Date', 'Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine'],
       ['Mon', 120, 220, 150, 320, 820],
       ['Tue', 132, 182, 232, 332, 932],
       ['Wed', 101, 191, 201, 301, 901],
