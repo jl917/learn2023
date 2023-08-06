@@ -6,7 +6,7 @@ import { debounce } from 'lodash-es'
 function randomNum(m: number, n: number): number {
   return Math.floor(Math.random() * (m - n) + n)
 }
-
+let ct = 'line';
 const option: ECOption = {
   // title: {
   //   text: 'Stacked Area Chart'
@@ -138,10 +138,28 @@ const MainPage = () => {
     chartRef.current?.setOption(newValues);
   }
 
+  const onClick2 = () => {
+    const newValues = JSON.parse(JSON.stringify(option));
+    newValues.series.forEach((e: any) => {
+      if (ct === 'line') {
+        e.type = 'bar'
+      } else {
+        e.type = 'line'
+      }
+    })
+    if(ct === 'line'){
+      ct = 'bar'
+    }else {
+      ct = 'line'
+    }
+    chartRef.current?.setOption(newValues);
+  }
+
   return (
     <>
       <div className="chart" style={{ height: 500 }} ref={divRef} ></div>
       <button onClick={onClick}>change</button>
+      <button onClick={onClick2}>changeChartType</button>
     </>
   );
 };
