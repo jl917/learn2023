@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@faker-js/faker": "^8.0.2",
+    "dayjs": "^1.11.9",
+    "install": "^0.13.0",
     "mongoose": "^7.4.3"
   }
 }
