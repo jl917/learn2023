@@ -2,28 +2,21 @@ export function getPercentSeats(
   valueList: number[],
   precision: number = 2
 ): number[] {
-  const sum = valueList.reduce(function (acc, val) {
-    return acc + (isNaN(val) ? 0 : val);
-  }, 0);
+  const sum = valueList.reduce((acc, val) => acc + (isNaN(val) ? 0 : val), 0);
   if (sum === 0) {
     return [];
   }
 
   const digits = Math.pow(10, precision);
-  const votesPerQuota = valueList.map(function (val) {
-    return ((isNaN(val) ? 0 : val) / sum) * digits * 100;
-  });
+  const votesPerQuota = valueList.map(
+    (val) => ((isNaN(val) ? 0 : val) / sum) * digits * 100
+  );
   const targetSeats = digits * 100;
 
-  const seats = votesPerQuota.map(function (votes) {
-    // Assign automatic seats.
-    return Math.floor(votes);
-  });
+  const seats = votesPerQuota.map((votes) => Math.floor(votes));
   let currentSum = seats.reduce((acc, val) => acc + val, 0);
 
-  const remainder = votesPerQuota.map(function (votes, idx) {
-    return votes - seats[idx];
-  });
+  const remainder = votesPerQuota.map((votes, idx) => votes - seats[idx]);
 
   // Has remainding votes.
   while (currentSum < targetSeats) {
@@ -42,7 +35,5 @@ export function getPercentSeats(
     remainder[maxId as number] = 0;
     ++currentSum;
   }
-  return seats.map(function (seat) {
-    return seat / digits;
-  });
+  return seats.map((seat) => seat / digits);
 }
